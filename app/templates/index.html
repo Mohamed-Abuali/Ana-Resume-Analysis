@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana - Resume Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <div class="logo-wrapper">
+        <h1 class="logo">Ana - Resume Analyzer</h1>
+        </div>
+         <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="/">Analyze Resume</a></li>
+                <li><a href="/enhance">Enhance Resume</a></li>
+                <li><a href="/matcher">Resume Matcher</a></li>
+            </ul>
+        </nav>
+        <button>Login</button>
+    </div>
+    
+    <div class="container">
+        <h1>Resume Analyzer</h1>
+            <div class="analyze-container">
+                            <div>
+                                {% if error %}
+                                    <div class="error">
+                                        <strong>Error:</strong> {{ error }}
+                                    </div>
+                                {% endif %}
+                                
+                                {% if score %}
+                                    <div class="result">
+                                        
+                                        <h3>Analysis Result:</h3>
+                                        
+                                        <table class="result-info">
+                                            <tr>
+                                                <td><strong>Score:</strong></td>
+                                                <td>{{ score }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Strengths:</strong></td>
+                                                <td>{{ strengths }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Weaknesses:</strong></td>
+                                                <td>{{ weaknesses }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Suggestions:</strong></td>
+                                                <td>{{ suggestions }}</td>
+                                            </tr>
+                                        </table>
+                                        
+                                    </div>
+                                {% endif %}
+                                </div>
+                    
+                    <form action="/analyze" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="resume">Upload your resume (PDF):</label>
+                            <input type="file" id="resume" name="resume" accept=".pdf" required>
+                        </div>
+                        <button type="submit">Analyze Resume</button>
+                    </form>
+                </div>
+    </div>
+</body>
+</html>

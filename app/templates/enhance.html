@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhance Resume</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}"
+</head>
+<body>
+      <div class="header">
+        <div class="logo-wrapper">
+        <h1 class="logo">Ana - Resume Analyzer</h1>
+        </div>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="/">Analyze Resume</a></li>
+                <li><a href="/enhance">Enhance Resume</a></li>
+                <li><a href="/matcher">Resume Matcher</a></li>
+            </ul>
+        </nav>
+        <button>Login</button>
+    </div>
+
+
+
+    <div class="enhance-page-container">
+                        <div class="enhance-container">
+                                <h1>Enhance Resume</h1>
+                            <form action="/enhance_resume" method="POST" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="resume">Upload your resume (PDF):</label>
+                                    <input type="file" id="resume" name="resume" accept=".pdf" required>
+                                </div>
+                                <button type="submit">Enhance Resume</button>
+                            </form>
+                        </div>
+
+                            <div class="result-container">
+                                
+                                {% if error %}
+                                <div class="error">
+                                    <strong>Error:</strong> {{ error }}
+                                </div>
+                                {% endif %}
+                                {% if result %}
+                                <div class="result">
+                                    <h3>Enhanced Resume:</h3>
+                                    <p>{{ result }}</p>
+                                </div>
+                                {% else %}
+                                <div class="preview-result">
+                                    <h3>The result will show here...</h3>
+                                    
+                                </div>
+                                {% endif %}
+                            </div>
+        </div>
+</body>
+</html>
